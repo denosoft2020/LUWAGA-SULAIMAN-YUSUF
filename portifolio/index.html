@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luwaga Sulaiman Yusuf | Security Professional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a2332;
+            --secondary: #243447;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --card-bg: #1e293b;
+            --border: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 50%);
+            pointer-events: none;
+        }
+
+        .profile-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+            color: #fff;
+        }
+
+        .profile-title {
+            font-size: 1.15rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--secondary);
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border);
+        }
+
+        .contact-links a:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .contact-links a i {
+            font-size: 1.1rem;
+        }
+
+        .phone-info {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1.25rem 1rem;
+            background: var(--secondary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        nav button:hover {
+            color: #fff;
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        nav button.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .content-section {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        h2 i {
+            color: var(--accent);
+        }
+
+        /* About */
+        .about-text {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+        }
+
+        /* Experience */
+        .job-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .job-card:hover {
+            border-color: var(--accent);
+        }
+
+        .job-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .job-company {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-date {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .job-duties {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .job-duties li {
+            position: relative;
+            padding-left: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .job-duties li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Education */
+        .edu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .edu-icon {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .edu-details h3 {
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-details p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .skill-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .skill-item span {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            background: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .profile-name {
+                font-size: 1.7rem;
+            }
+
+            .contact-links a {
+                font-size: 0.85rem;
+                padding: 0.5rem 0.9rem;
+            }
+
+            nav button {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .job-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="profile-name">LUWAGA SULAIMAN YUSUF</h1>
+        <p class="profile-title">Security Guard</p>
+
+        <div class="contact-links">
+            <a href="https://wa.me/256706131448" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="mailto:tipemirateuae@gmail.com">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="tel:+971505326478">
+                <i class="fas fa-phone"></i> +971 50 532 6478
+            </a>
+        </div>
+        <p class="phone-info">WhatsApp (Uganda): +256 706 131 448</p>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" data-section="about">About Me</button>
+        <button class="nav-btn" data-section="experience">Experience</button>
+        <button class="nav-btn" data-section="education">Education</button>
+        <button class="nav-btn" data-section="skills">Skills</button>
+        <button class="nav-btn" data-section="contact">Resume</button>
+    </nav>
+
+    <main>
+        <!-- About -->
+        <section id="about" class="content-section active">
+            <h2><i class="fas fa-user-shield"></i> About Me</h2>
+            <div class="about-text">
+                I am a dedicated and experienced security professional with a strong commitment to ensuring the safety and security of people and property. I have a proven track record of maintaining secure environments, enforcing access control, and responding effectively to emergencies. Reliable, observant, and professional under pressure.
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="content-section">
+            <h2><i class="fas fa-briefcase"></i> Experience</h2>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Cleaner</div>
+                        <div class="job-company">We One – Dubai, UAE</div>
+                    </div>
+                    <span class="job-date">April 2024 – Present</span>
+                </div>
+                <ul class="job-duties">
+                    <li>Vacuuming, sweeping, and mopping floors of various types</li>
+                    <li>Dusting ceilings, light fittings, countertops, and furniture</li>
+                    <li>Scrubbing and sanitizing toilets, sinks, and kitchen fixtures</li>
+                    <li>Emptying trash cans and maintaining overall cleanliness</li>
+                    <li>Washing and drying windows</li>
+                    <li>Liaising with the line manager to ensure sufficient cleaning supplies</li>
+                </ul>
+            </div>
+
+            <div class="job-card">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Security Guard</div>
+                        <div class="job-company">Magnum Security Services – Uganda</div>
+                    </div>
+                    <span class="job-date">2021 – 2023</span>
+                </div>
+                <ul class="job-duties">
+                    <li>Ensured guests signed in upon arrival and exit</li>
+                    <li>Made guests aware of rules that must be adhered to</li>
+                    <li>Reported to supervisors on a regular basis</li>
+                    <li>Removed trespassers or unwanted individuals from the property</li>
+                    <li>Contacted relevant authorities if a crime was committed or an accident occurred</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="content-section">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="edu-card">
+                <div class="edu-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="edu-details">
+                    <h3>Uganda Certificate of Education (UCE)</h3>
+                    <p>K. Garden Groove College, Budo</p>
+                    <p>2014 – 2018</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="content-section">
+            <h2><i class="fas fa-cogs"></i> Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fas fa-video"></i>
+                    <span>Surveillance & Monitoring</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-ambulance"></i>
+                    <span>Emergency Response</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-handshake"></i>
+                    <span>Conflict Resolution</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>First Aid & CPR Certified</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-user-check"></i>
+                    <span>Access Control & Guest Management</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-keyboard"></i>
+                    <span>Computer Skills & Fast Typing</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact / Resume -->
+        <section id="contact" class="content-section">
+            <h2><i class="fas fa-file-alt"></i> Resume</h2>
+            <p>You can download my resume by clicking the link below:</p>
+            <a href="/sulaiman.pdf.pdf" target="_blank" rel="noopener" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--accent); color: #fff; text-decoration: none; border-radius: 8px; transition: background 0.2s ease;">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
+            <h2><i class="fas fa-certificate"></i> SIRA Certificate</h2>
+            <p>You can download my SIRA certificate by clicking the link below:</p>
+            <a href="/Sulaiman Yusuf.pdf" target="_blank" rel="noopener" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--accent); color: #fff; text-decoration: none; border-radius: 8px; transition: background 0.2s ease;">
+                <i class="fas fa-download"></i> Download SIRA Certificate
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Luwaga Sulaiman Yusuf. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const buttons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.content-section');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all
+                buttons.forEach(b => b.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+
+                // Activate clicked
+                btn.classList.add('active');
+                const target = document.getElementById(btn.dataset.section);
+                if (target) target.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
